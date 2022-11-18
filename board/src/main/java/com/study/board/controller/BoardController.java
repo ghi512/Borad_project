@@ -22,6 +22,31 @@ public class BoardController {
   @Autowired
   private BoardService boardService;
 
+  @GetMapping("board/main")
+  public String boardMain() {
+    return "index";
+  }
+
+  @GetMapping("board/chatting")
+  public String boardChat() {
+    return "chatting";
+  }
+
+  @GetMapping("board/login")
+  public String boardLogin() {
+    return "login";
+  }
+
+  @GetMapping("board/management")
+  public String boardManagement() {
+    return "management";
+  }
+
+  @GetMapping("board/message")
+  public String boardMessage() {
+    return "message";
+  }
+
   @GetMapping("/board/write") // 어떤 url 주소로 접근할지 지정 -> localhost:8080/board/write 로 접근
   public String boardWriteForm() {
     return "Boardwrite"; // 어떤 html 파일을 뷰파일로 보여줄 건지
@@ -47,8 +72,6 @@ public class BoardController {
     else {
       list = boardService.boardSearchList(searchKeyword, pageable);
     }
-
-
 
     int nowPage = list.getPageable().getPageNumber() + 1;
     int startPage = Math.max(nowPage - 4, 1);

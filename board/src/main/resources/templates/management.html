@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <title>management</title>
+  <style>
+            body{
+  position: relative;
+  background-color: white;
+  top:20%;
+  bottom:20%;
+  width: 100%;
+  height: 100%;
+}
+#right {
+   position : relative;
+   top : 5px;
+   right : 10px;
+}
+ul{
+  line-height: 25px;;
+  list-style-type: none;
+  margin:0;
+  padding:0 20px;
+  overflow: hidden;
+}
+ul li{
+  display:block;
+  list-style-type: none;
+  padding: 10px 40px;
+}
+li a{
+  color:black;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display:block;
+  padding: 12px 15px;
+  font-size:25px;
+  font-family: "Trebuchet MS",Dotum,Arial;
+}
+li:hover{
+  background-color: lightslategray;
+}
+            h3 {
+                color : white;
+            }
+            table {
+                color : black;
+                border-collapse : collapse;
+                width : 100%;
+            }
+            td, th {
+                text-align : left;
+                padding : 10px;
+                height : 20px;
+                width : 100px;
+            }
+            thead,tfoot {
+                background : rgb(33, 33, 33);
+                color : white;
+            }
+            tbody tr:nth-child(even) {
+                background : lightgray;
+            }
+            tbody tr:hover {
+                background : lightslategray;
+            }
+        </style>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav>
+  <ul id="menu">
+    <li><a th:href="@{/board/main}">MAIN</a>
+  </ul>
+</nav>
+<table>
+  <thead>
+  <tr>
+    <th>NAME</th>
+    <th>DATE</th>
+    <th>EMAIL</th>
+    <th>DEPT</th>
+    <th><input type="checkbox" name="c" id='all'></th>
+  </tr>
+  </thead>
+  <tbody id="tb">
+  <tr>
+    <td>김민지</td>
+    <td>2022/11/16</td>
+    <td>kim@gmail.com</td>
+    <td>Planning Dept</td>
+    <td><input type="checkbox" name="c"></td>
+  </tr>
+  <tr>
+    <td>이진</td>
+    <td>2022/11/16</td>
+    <td>lee@gmail.com</td>
+    <td>Mnagement Dept</td>
+    <td><input type="checkbox" name="c"></td>
+  </tr>
+  <tr>
+    <td>장혜림</td>
+    <td>2022/11/16</td>
+    <td>jang@gmail.com</td>
+    <td>Accounting Dept</td>
+    <td><input type="checkbox" name="c"></td>
+  </tr>
+  <tr>
+    <td>차민서</td>
+    <td>2022/11/16</td>
+    <td>cha@gmail.com</td>
+    <td>General Affairs Dept</td>
+    <td><input type="checkbox" name="c"></td>
+  </tr>
+  </tbody>
+</table><br>
+<button onclick="addRow()">add new member</button>
+<button onclick="delRow()">delete member</button>
+<script>
+            $('#all').click(function() {
+                if($("input:checkbox[id='all']").prop("checked")) {
+                    $("input[type=checkbox]").prop("checked",true);
+                }
+                else
+                {
+                    $("input[type=checkbox]").prop("checked",false);
+                }
+            });
+            function addRow() {
+                var tb = document.getElementById("tb");
+                var row = tb.insertRow(tb.rows.length);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+                cell1.innerHTML = 'new member';
+                cell2.innerHTML = '2022/11/16';
+                cell3.innerHTML = 'new@gmail.com';
+                cell4.innerHTML = "<input type='checkbox' name='c'>";
+            }
+            function delRow() {
+                var tb = document.getElementById("tb");
+                for(var i=0; i<tb.rows.length; i++) {
+                    var chk = tb.rows[i].cells[3].childNodes[0].checked;
+                    if(chk){
+                        tb.deleteRow(i);
+                        i--;
+                    }
+                }
+            }
+        </script>
+</body>
+</html>

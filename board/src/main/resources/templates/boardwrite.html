@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>게시물 작성 폼</title>
@@ -20,9 +20,52 @@
     margin-top : 10px;
     min-height : 300px;
   }
+  body{
+  position: relative;
+  background-color: white;
+  top:20%;
+  bottom:20%;
+  width: 100%;
+  height: 100%;
+}
+#right {
+   position : relative;
+   top : 5px;
+   right : 10px;
+}
+ul{
+  line-height: 25px;;
+  list-style-type: none;
+  margin:0;
+  padding:0 20px;
+  overflow: hidden;
+}
+ul li{
+  display:block;
+  list-style-type: none;
+  padding: 10px 40px;
+}
+li a{
+  color:black;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display:block;
+  padding: 12px 15px;
+  font-size:25px;
+  font-family: "Trebuchet MS",Dotum,Arial;
+}
+li:hover{
+  background-color: lightslategray;
+}
 </style>
 
 <body>
+  <nav>
+    <ul id="menu">
+      <li><a th:href="@{/board/main}">MAIN</a>
+    </ul>
+  </nav>
   <div class="layout">
     <form action="/board/writepro" method="post" enctype="multipart/form-data">
       <input name="title" type="text">
